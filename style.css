@@ -395,11 +395,9 @@ max-width:550px;
 
 display:flex;
 
-flex-direction:column;
+gap:20px;
 
-gap:12px;
-
-width:100%;
+flex-wrap:wrap;
 
 }
 
@@ -1943,14 +1941,9 @@ font-size:52px;
 
 .navbar{
 
-flex-direction:column;
-
-gap:20px;
-
-padding:20px 0;
+padding:15px;
 
 }
-
 nav ul{
 
 flex-wrap:wrap;
@@ -2086,15 +2079,17 @@ font-size:34px;
 
 .stats-grid,
 
-.trust-bar,
+.trust-bar{
 
-.footer-grid{
-
-grid-template-columns:1fr;
+grid-template-columns:repeat(2,1fr);
 
 }
 
-.hero-buttons,
+.hero-buttons{
+
+flex-direction:column;
+
+}
 
 .contact-buttons{
 
@@ -2195,7 +2190,7 @@ font-size:24px;
 
 .logo img{
 
-height:45px;
+height:38px;
 
 }
 .nav-buttons{
