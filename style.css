@@ -285,7 +285,7 @@ HERO
 
 position:relative;
 
-height:100vh;
+min-height:100vh;
 
 display:flex;
 
@@ -293,7 +293,7 @@ align-items:center;
 
 justify-content:space-between;
 
-padding:0 8%;
+padding:120px 8% 70px;
 
 overflow:hidden;
 
