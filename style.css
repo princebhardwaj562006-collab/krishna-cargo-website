@@ -395,9 +395,11 @@ max-width:550px;
 
 display:flex;
 
-gap:20px;
+flex-direction:column;
 
-flex-wrap:wrap;
+gap:12px;
+
+width:100%;
 
 }
 
@@ -2193,10 +2195,9 @@ font-size:24px;
 
 .logo img{
 
-height:60px;
+height:45px;
 
 }
-
 .nav-buttons{
 
 flex-direction:column;
