@@ -179,14 +179,11 @@ align-items:center;
 
 }
 
-nav ul li a{
-
-font-weight:600;
-
-transition:.3s;
-
-position:relative;
-
+nav ul{
+display:flex;
+gap:35px;
+align-items:center;
+flex-wrap:wrap;
 }
 
 nav ul li a:hover{
@@ -2066,22 +2063,15 @@ font-size:34px;
 }
 
 .why-grid,
-
 .services-grid,
-
 .fleet-grid,
-
 .review-grid,
-
 .gallery-grid,
-
 .process-grid,
-
 .stats-grid,
-
 .trust-bar{
 
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:1fr;
 
 }
 
@@ -2148,12 +2138,20 @@ bottom:30px;
 
 @media(max-width:480px){
 
+.contact-wrapper{
+grid-template-columns:1fr;
+gap:25px;
+}
+
+.map iframe{
+height:280px;
+}
+
 .hero{
-
-padding:80px 20px 35px;
-
+padding:70px 15px 30px;
 min-height:auto;
-
+width:100%;
+overflow:hidden;
 }
 
 .hero h1{
