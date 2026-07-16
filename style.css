@@ -1912,7 +1912,79 @@ border-radius:10px;
 background:#cf8b00;
 
 }
+/* ==========================
+MOBILE MENU
+========================== */
 
+.menu-toggle{
+
+display:none;
+
+font-size:30px;
+
+cursor:pointer;
+
+color:var(--primary);
+
+}
+
+@media(max-width:992px){
+
+.menu-toggle{
+
+display:block;
+
+}
+
+nav{
+
+position:fixed;
+
+top:80px;
+
+right:-100%;
+
+width:280px;
+
+height:100vh;
+
+background:#fff;
+
+box-shadow:-5px 0 20px rgba(0,0,0,.15);
+
+transition:.4s;
+
+padding:40px 20px;
+
+z-index:999;
+
+}
+
+nav.active{
+
+right:0;
+
+}
+
+nav ul{
+
+display:flex;
+
+flex-direction:column;
+
+gap:25px;
+
+align-items:flex-start;
+
+}
+
+.nav-buttons{
+
+display:none;
+
+}
+
+}
 /* ===========================================
 RESPONSIVE
 =========================================== */
