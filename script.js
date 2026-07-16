@@ -1,72 +1,119 @@
-/* ===================================================
-   KRISHNA CARGO CARRIER
-   script.js
-=================================================== */
+/* ==========================================================
+   KRISHNA CARGO CARRIER V3
+========================================================== */
 
-/* ===========================
-SMOOTH SCROLL
-=========================== */
+/* ===============================
+MOBILE MENU
+=============================== */
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
 
-        const target = document.querySelector(this.getAttribute("href"));
+if(menuToggle && navMenu){
 
-        if(target){
+menuToggle.addEventListener("click",()=>{
 
-            e.preventDefault();
-
-            target.scrollIntoView({
-
-                behavior: "smooth"
-
-            });
-
-        }
-
-    });
+navMenu.classList.toggle("active");
 
 });
 
-/* ===========================
-COUNTER ANIMATION
-=========================== */
+document.querySelectorAll("#navMenu a").forEach(link=>{
 
-const counters = document.querySelectorAll(".counter");
+link.addEventListener("click",()=>{
 
-const counterObserver = new IntersectionObserver((entries)=>{
+navMenu.classList.remove("active");
+
+});
+
+});
+
+}
+
+/* ===============================
+SMOOTH SCROLL
+=============================== */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+
+anchor.addEventListener("click",function(e){
+
+const target=document.querySelector(this.getAttribute("href"));
+
+if(target){
+
+e.preventDefault();
+
+target.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+}
+
+});
+
+});
+
+/* ===============================
+HEADER SHADOW
+=============================== */
+
+const header=document.getElementById("header");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>40){
+
+header.style.boxShadow="0 10px 30px rgba(0,0,0,.15)";
+
+}else{
+
+header.style.boxShadow="0 5px 18px rgba(0,0,0,.08)";
+
+}
+
+});
+
+/* ===============================
+COUNTER
+=============================== */
+
+const counters=document.querySelectorAll(".counter");
+
+const counterObserver=new IntersectionObserver(entries=>{
 
 entries.forEach(entry=>{
 
 if(entry.isIntersecting){
 
-const counter = entry.target;
+const counter=entry.target;
 
-const target = +counter.dataset.target;
+const target=+counter.dataset.target;
 
-let count = 0;
+let count=0;
 
-const speed = target/120;
+const increment=target/120;
 
-const updateCounter = ()=>{
+const update=()=>{
 
-count += speed;
+count+=increment;
 
-if(count < target){
+if(count<target){
 
-counter.innerText = Math.ceil(count);
+counter.innerText=Math.ceil(count);
 
-requestAnimationFrame(updateCounter);
+requestAnimationFrame(update);
 
 }else{
 
-counter.innerText = target+"+";
+counter.innerText=target+"+";
 
 }
 
-}
+};
 
-updateCounter();
+update();
 
 counterObserver.unobserve(counter);
 
@@ -82,15 +129,115 @@ counterObserver.observe(counter);
 
 });
 
-/* ===========================
-BACK TO TOP BUTTON
-=========================== */
+/* ===============================
+FAQ
+=============================== */
+
+document.querySelectorAll(".faq-item").forEach(item=>{
+
+item.addEventListener("click",()=>{
+
+const p=item.querySelector("p");
+
+const open=p.style.display==="block";
+
+document.querySelectorAll(".faq-item p").forEach(answer=>{
+
+answer.style.display="none";
+
+});
+
+p.style.display=open?"none":"block";
+
+});
+
+});
+
+/* ===============================
+SCROLL REVEAL
+=============================== */
+
+const reveal=document.querySelectorAll(
+
+".service-card,.why-card,.fleet-card,.review-card,.stat-card,.process-card,.about-image,.about-content"
+
+);
+
+const revealObserver=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0)";
+
+}
+
+});
+
+},{threshold:.15});
+
+reveal.forEach(el=>{
+
+el.style.opacity="0";
+
+el.style.transform="translateY(50px)";
+
+el.style.transition=".8s";
+
+revealObserver.observe(el);
+
+});
+
+/* ===============================
+ACTIVE NAVIGATION
+=============================== */
+
+const sections=document.querySelectorAll("section");
+
+const navLinks=document.querySelectorAll("#navMenu a");
+
+window.addEventListener("scroll",()=>{
+
+let current="";
+
+sections.forEach(section=>{
+
+const top=section.offsetTop-120;
+
+if(window.scrollY>=top){
+
+current=section.getAttribute("id");
+
+}
+
+});
+
+navLinks.forEach(link=>{
+
+link.classList.remove("active");
+
+if(link.getAttribute("href")==="#"+current){
+
+link.classList.add("active");
+
+}
+
+});
+
+});
+
+/* ===============================
+BACK TO TOP
+=============================== */
 
 const topBtn=document.getElementById("topBtn");
 
 window.addEventListener("scroll",()=>{
 
-if(window.scrollY>400){
+if(window.scrollY>500){
 
 topBtn.style.display="flex";
 
@@ -114,224 +261,102 @@ behavior:"smooth"
 
 });
 
-/* ===========================
-FAQ ACCORDION
-=========================== */
+/* ===============================
+QUOTE FORM → WHATSAPP
+=============================== */
 
-const faqItems=document.querySelectorAll(".faq-item");
+const quoteForm=document.getElementById("quoteForm");
 
-faqItems.forEach(item=>{
+if(quoteForm){
 
-const answer=item.querySelector("p");
-
-answer.style.display="none";
-
-item.style.cursor="pointer";
-
-item.addEventListener("click",()=>{
-
-const isOpen=answer.style.display==="block";
-
-faqItems.forEach(f=>{
-
-f.querySelector("p").style.display="none";
-
-});
-
-answer.style.display=isOpen?"none":"block";
-
-});
-
-});
-
-/* ===========================
-NAVBAR SHADOW
-=========================== */
-
-const header=document.querySelector("header");
-
-window.addEventListener("scroll",()=>{
-
-if(window.scrollY>50){
-
-header.style.boxShadow="0 15px 30px rgba(0,0,0,.12)";
-
-}else{
-
-header.style.boxShadow="0 5px 20px rgba(0,0,0,.08)";
-
-}
-
-});
-
-/* ===========================
-SCROLL REVEAL
-=========================== */
-
-const revealElements=document.querySelectorAll(
-
-".service-card,.why-card,.fleet-card,.review-card,.stat-card,.faq-item,.about,.process-grid div"
-
-);
-
-const revealObserver=new IntersectionObserver((entries)=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.style.opacity="1";
-
-entry.target.style.transform="translateY(0)";
-
-}
-
-});
-
-},{threshold:.15});
-
-revealElements.forEach(el=>{
-
-el.style.opacity="0";
-
-el.style.transform="translateY(60px)";
-
-el.style.transition="all .8s ease";
-
-revealObserver.observe(el);
-
-});
-
-/* ===========================
-ACTIVE MENU
-=========================== */
-
-const sections=document.querySelectorAll("section");
-
-const navLinks=document.querySelectorAll("nav ul li a");
-
-window.addEventListener("scroll",()=>{
-
-let current="";
-
-sections.forEach(section=>{
-
-const sectionTop=section.offsetTop-120;
-
-const sectionHeight=section.clientHeight;
-
-if(pageYOffset>=sectionTop){
-
-current=section.getAttribute("id");
-
-}
-
-});
-
-navLinks.forEach(link=>{
-
-link.classList.remove("active");
-
-if(link.getAttribute("href")==="#"+current){
-
-link.classList.add("active");
-
-}
-
-});
-
-});
-
-/* ===========================
-BUTTON RIPPLE EFFECT
-=========================== */
-
-const buttons=document.querySelectorAll(".primary-btn,.secondary-btn,.call-btn,.whatsapp-btn");
-
-buttons.forEach(button=>{
-
-button.addEventListener("mouseenter",()=>{
-
-button.style.transform="translateY(-5px) scale(1.03)";
-
-});
-
-button.addEventListener("mouseleave",()=>{
-
-button.style.transform="translateY(0)";
-
-});
-
-});
-
-/* ===========================
-LOADING ANIMATION
-=========================== */
-
-window.addEventListener("load",()=>{
-
-document.body.style.opacity="1";
-
-});
-
-document.body.style.opacity="0";
-
-document.body.style.transition="opacity .8s ease";
-
-/* ===========================
-PREVENT EMPTY FORM
-=========================== */
-
-const forms=document.querySelectorAll("form");
-
-forms.forEach(form=>{
-
-form.addEventListener("submit",(e)=>{
-
-const inputs=form.querySelectorAll("input[required],select[required]");
-
-let valid=true;
-
-inputs.forEach(input=>{
-
-if(input.value.trim()===""){
-
-valid=false;
-
-input.style.border="2px solid red";
-
-}else{
-
-input.style.border="1px solid #ddd";
-
-}
-
-});
-
-if(!valid){
+quoteForm.addEventListener("submit",function(e){
 
 e.preventDefault();
 
-alert("Please fill all required fields.");
+const data=new FormData(this);
+
+const message=
+
+`🚛 Krishna Cargo Carrier Quote Request
+
+👤 Name: ${data.get("name")}
+
+📞 Phone: ${data.get("phone")}
+
+📍 Pickup: ${data.get("pickup")}
+
+📍 Drop: ${data.get("drop")}
+
+🚗 Vehicle: ${data.get("vehicle")}
+
+🚚 Carrier: ${data.get("carrier")}
+
+📅 Date: ${data.get("date")}
+
+📝 Message: ${data.get("message")}`;
+
+window.open(
+
+`https://wa.me/919813755160?text=${encodeURIComponent(message)}`,
+
+"_blank"
+
+);
+
+});
 
 }
 
-});
+/* ===============================
+CONTACT FORM → WHATSAPP
+=============================== */
+
+const contactForm=document.getElementById("contactForm");
+
+if(contactForm){
+
+contactForm.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const message=
+
+`🚛 Contact Enquiry
+
+👤 Name: ${document.getElementById("name").value}
+
+📞 Phone: ${document.getElementById("phone").value}
+
+📍 Pickup: ${document.getElementById("pickup").value}
+
+📍 Drop: ${document.getElementById("drop").value}
+
+🚗 Vehicle: ${document.getElementById("vehicle").value}
+
+📝 Message: ${document.getElementById("message").value}`;
+
+window.open(
+
+`https://wa.me/919813755160?text=${encodeURIComponent(message)}`,
+
+"_blank"
+
+);
 
 });
 
-/* ===========================
+}
+
+/* ===============================
 CURRENT YEAR
-=========================== */
+=============================== */
 
 const year=document.getElementById("year");
 
 if(year){
 
-year.innerHTML=new Date().getFullYear();
+year.textContent=new Date().getFullYear();
 
 }
 
-console.log("Krishna Cargo Carrier Website Loaded Successfully 🚛");
-
-
+console.log("✅ Krishna Cargo Carrier V3 Loaded Successfully");
