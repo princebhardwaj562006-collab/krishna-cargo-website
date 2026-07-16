@@ -1921,16 +1921,25 @@ background:#cf8b00;
 /* ==========================
 MOBILE MENU
 ========================== */
-
 .menu-toggle{
 
 display:none;
 
-font-size:30px;
+font-size:32px;
 
 cursor:pointer;
 
 color:var(--primary);
+
+z-index:10001;
+
+transition:.3s;
+
+}
+
+.menu-toggle:hover{
+
+transform:rotate(90deg);
 
 }
 
