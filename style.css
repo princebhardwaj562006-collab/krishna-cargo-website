@@ -1946,25 +1946,17 @@ nav{
 
 position:fixed;
 
-top:80px;
+top:0;
 
 right:-100%;
 
-width:280px;
+width:100%;
 
 height:100vh;
 
-background:#fff;
+background:rgba(11,37,69,.97);
 
-box-shadow:-5px 0 20px rgba(0,0,0,.15);
-
-transition:.4s;
-
-padding:40px 20px;
-
-z-index:999;
-
-}
+backdrop-filter:blur(15px);
 
 nav.active{
 
@@ -1978,9 +1970,13 @@ display:flex;
 
 flex-direction:column;
 
-gap:25px;
+justify-content:center;
 
-align-items:flex-start;
+align-items:center;
+
+height:100%;
+
+gap:35px;
 
 }
 
