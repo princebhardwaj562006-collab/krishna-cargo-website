@@ -51,7 +51,8 @@ overflow-x:hidden;
 img{
 
 width:100%;
-
+max-width:100%;
+height:auto;
 display:block;
 
 }
@@ -2208,6 +2209,23 @@ text-align:center;
 
 }
 
+
+/* ===========================================
+OVERFLOW FIX
+=========================================== */
+
+html,
+body{
+width:100%;
+overflow-x:hidden;
+}
+
+*{
+max-width:100%;
+}
+
+section{
+overflow:hidden;
 }
 
 /* ===========================================
