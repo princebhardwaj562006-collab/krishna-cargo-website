@@ -1914,12 +1914,15 @@ MOBILE MENU
 ========================== */
 
 .menu-toggle{
+.close-menu{
 display:none;
-font-size:32px;
+position:fixed;
+top:28px;
+right:25px;
+font-size:34px;
+color:#fff;
 cursor:pointer;
-color:var(--primary);
-z-index:10001;
-transition:.3s;
+z-index:10002;
 }
 
 .menu-toggle:hover{
