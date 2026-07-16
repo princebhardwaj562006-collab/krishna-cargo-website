@@ -176,15 +176,6 @@ width:auto;
 
 }
 
-nav ul{
-
-display:flex;
-
-gap:35px;
-
-align-items:center;
-
-}
 
 nav ul{
 display:flex;
@@ -2029,15 +2020,7 @@ font-size:52px;
 padding:15px;
 
 }
-nav ul{
 
-flex-wrap:wrap;
-
-justify-content:center;
-
-gap:20px;
-
-}
 
 .hero{
 
@@ -2295,7 +2278,7 @@ width:100%;
 text-align:center;
 
 }
-
+}
 
 /* ===========================================
 OVERFLOW FIX
