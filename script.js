@@ -333,3 +333,27 @@ year.innerHTML=new Date().getFullYear();
 }
 
 console.log("Krishna Cargo Carrier Website Loaded Successfully 🚛");
+
+/* ===========================
+MOBILE MENU
+=========================== */
+
+const menuToggle=document.querySelector(".menu-toggle");
+
+const nav=document.getElementById("navMenu");
+
+menuToggle.addEventListener("click",()=>{
+
+nav.classList.toggle("active");
+
+});
+
+document.querySelectorAll("#navMenu a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+nav.classList.remove("active");
+
+});
+
+});
