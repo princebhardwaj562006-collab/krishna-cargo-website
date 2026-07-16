@@ -46,6 +46,8 @@ line-height:1.7;
 
 overflow-x:hidden;
 
+padding-top:95px;
+
 }
 
 img{
@@ -132,13 +134,17 @@ NAVBAR
 
 header{
 
-position:sticky;
+position:fixed;
 
 top:0;
 
-z-index:9999;
+left:0;
+
+width:100%;
 
 background:#fff;
+
+z-index:9999;
 
 box-shadow:0 5px 20px rgba(0,0,0,.08);
 
