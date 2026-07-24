@@ -351,6 +351,13 @@ if (quoteForm) {
     "_blank"
 );
 
+// Send GA4 event
+if (typeof gtag === "function") {
+    gtag("event", "request_quote", {
+        form_name: "hero_quote"
+    });
+}
+
 // Reset the form
 quoteForm.reset();
 
@@ -434,11 +441,18 @@ ${templateParams.message}`;
         "_blank"
     );
 
-    contactForm.reset();
+// Send GA4 event
+if (typeof gtag === "function") {
+    gtag("event", "request_quote", {
+        form_name: "contact_form"
+    });
+}
 
-    setTimeout(function () {
-        window.location.href = "thank-you.html";
-    }, 1500);
+contactForm.reset();
+
+setTimeout(function () {
+    window.location.href = "thank-you.html";
+}, 1500);
 
 })
 .catch(function (error) {
