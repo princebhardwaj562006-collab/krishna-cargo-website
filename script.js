@@ -8,12 +8,38 @@ MOBILE MENU
 
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
+const menuOverlay = document.getElementById("menuOverlay");
 
 if(menuToggle && navMenu){
 
 menuToggle.addEventListener("click",()=>{
 
 navMenu.classList.toggle("active");
+menuOverlay.classList.toggle("active");
+
+document.body.style.overflow =
+navMenu.classList.contains("active")
+? "hidden"
+: "";
+
+const icon = menuToggle.querySelector("i");
+
+icon.classList.toggle("fa-bars");
+icon.classList.toggle("fa-xmark");
+
+});
+
+menuOverlay.addEventListener("click",()=>{
+
+navMenu.classList.remove("active");
+menuOverlay.classList.remove("active");
+
+document.body.style.overflow="";
+
+const icon = menuToggle.querySelector("i");
+
+icon.classList.remove("fa-xmark");
+icon.classList.add("fa-bars");
 
 });
 
@@ -22,6 +48,14 @@ document.querySelectorAll("#navMenu a").forEach(link=>{
 link.addEventListener("click",()=>{
 
 navMenu.classList.remove("active");
+menuOverlay.classList.remove("active");
+
+document.body.style.overflow="";
+
+const icon = menuToggle.querySelector("i");
+
+icon.classList.remove("fa-xmark");
+icon.classList.add("fa-bars");
 
 });
 
