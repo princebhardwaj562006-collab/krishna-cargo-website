@@ -271,8 +271,11 @@ required>
 </select>
 
 <input
-type="date"
+type="text"
 name="date"
+placeholder="Preferred Date"
+onfocus="this.type='date'"
+onblur="if(!this.value)this.type='text'"
 required>
 
 <textarea
@@ -1312,51 +1315,52 @@ sharmayogeshsharma564@gmail.com
 <input
 type="text"
 id="name"
+name="name"
 placeholder="Full Name"
 required>
 
 <input
 type="tel"
 id="phone"
+name="phone"
 placeholder="Mobile Number"
 required>
 
 <input
 type="text"
 id="pickup"
+name="pickup"
 placeholder="Pickup City"
 required>
 
 <input
 type="text"
 id="drop"
+name="drop"
 placeholder="Drop City"
 required>
 
-<select id="vehicle" required>
+<select
+id="vehicle"
+name="vehicle"
+required>
 
 <option value="">Select Vehicle</option>
-
 <option>Car</option>
-
 <option>Bike</option>
-
 <option>SUV</option>
-
 <option>Luxury Car</option>
-
 <option>Household Goods</option>
 
 </select>
 
 <textarea
 id="message"
+name="message"
 placeholder="Additional Details"></textarea>
 
 <button type="submit">
-
 Request Free Quote
-
 </button>
 
 </form>

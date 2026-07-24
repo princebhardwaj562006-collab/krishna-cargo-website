@@ -383,3 +383,72 @@ year.textContent=new Date().getFullYear();
 }
 
 console.log("✅ Krishna Cargo Carrier V3 Loaded Successfully");
+
+// ===============================
+// CONTACT FORM
+// ===============================
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+
+contactForm.addEventListener("submit", function (e) {
+
+e.preventDefault();
+
+const formData = new FormData(contactForm);
+
+const templateParams = {
+    name: formData.get("name"),
+    phone: formData.get("phone"),
+    pickup: formData.get("pickup"),
+    drop: formData.get("drop"),
+    vehicle: formData.get("vehicle"),
+    carrier: "Not Specified",
+    date: "Not Specified",
+    message: formData.get("message") || "No additional details"
+};
+
+emailjs.send(
+    "service_5y4vws9",
+    "template_5vb17q4",
+    templateParams
+)
+.then(function () {
+
+    const whatsappMessage =
+`🚛 *New Transport Enquiry*
+
+👤 Name: ${templateParams.name}
+📞 Phone: ${templateParams.phone}
+📍 Pickup: ${templateParams.pickup}
+📍 Drop: ${templateParams.drop}
+🚗 Vehicle: ${templateParams.vehicle}
+
+📝 Message:
+${templateParams.message}`;
+
+    window.open(
+        "https://wa.me/919813755160?text=" +
+        encodeURIComponent(whatsappMessage),
+        "_blank"
+    );
+
+    contactForm.reset();
+
+    setTimeout(function () {
+        window.location.href = "thank-you.html";
+    }, 1500);
+
+})
+.catch(function (error) {
+
+    console.error("EmailJS Error:", error);
+
+    alert("Something went wrong. Please try again.");
+
+});
+
+});
+
+}
