@@ -299,18 +299,35 @@ behavior:"smooth"
 QUOTE FORM → WHATSAPP
 =============================== */
 
-const quoteForm=document.getElementById("quoteForm");
+const quoteForm = document.getElementById("quoteForm");
 
-if(quoteForm){
+if (quoteForm) {
 
-quoteForm.addEventListener("submit",function(e){
+    quoteForm.addEventListener("submit", function (e) {
 
-e.preventDefault();
+        e.preventDefault();
 
-const data=new FormData(this);
+        const data = new FormData(this);
 
-const message=
+        const templateParams = {
+            name: data.get("name"),
+            phone: data.get("phone"),
+            pickup: data.get("pickup"),
+            drop: data.get("drop"),
+            vehicle: data.get("vehicle"),
+            carrier: data.get("carrier"),
+            date: data.get("date"),
+            message: data.get("message")
+        };
 
+        emailjs.send(
+            "service_5y4vws9",
+            "template_5vb17q4",
+            templateParams
+        )
+        .then(function () {
+
+            const whatsappMessage =
 `🚛 Krishna Cargo Carrier Quote Request
 
 👤 Name: ${data.get("name")}
@@ -329,58 +346,30 @@ const message=
 
 📝 Message: ${data.get("message")}`;
 
-window.open(
-
-`https://wa.me/919813755160?text=${encodeURIComponent(message)}`,
-
-"_blank"
-
+            window.open(
+    `https://wa.me/919813755160?text=${encodeURIComponent(whatsappMessage)}`,
+    "_blank"
 );
 
-});
+// Reset the form
+quoteForm.reset();
+
+// Redirect after a short delay
+setTimeout(() => {
+    window.location.href = "thank-you.html";
+}, 1500);
+        })
+        .catch(function (error) {
+
+            console.error("EmailJS Error:", error);
+
+            alert("Sorry! Something went wrong while sending your request.");
+
+        });
+
+    });
 
 }
-
-/* ===============================
-CONTACT FORM → WHATSAPP
-=============================== */
-
-const contactForm=document.getElementById("contactForm");
-
-if(contactForm){
-
-contactForm.addEventListener("submit",function(e){
-
-e.preventDefault();
-
-const message=
-
-`🚛 Contact Enquiry
-
-👤 Name: ${document.getElementById("name").value}
-
-📞 Phone: ${document.getElementById("phone").value}
-
-📍 Pickup: ${document.getElementById("pickup").value}
-
-📍 Drop: ${document.getElementById("drop").value}
-
-🚗 Vehicle: ${document.getElementById("vehicle").value}
-
-📝 Message: ${document.getElementById("message").value}`;
-
-window.open(
-
-`https://wa.me/919813755160?text=${encodeURIComponent(message)}`,
-
-"_blank"
-
-);
-
-});
-
-}
-
 /* ===============================
 CURRENT YEAR
 =============================== */
